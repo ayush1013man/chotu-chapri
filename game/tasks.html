@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Theme Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .message h1 {
+            color: #ff6f61;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: bounce 1s infinite;
+        }
+
+        .message p {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #action-btn {
+            background: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            <h1> Before You Proceed </h1>
+            <p>You need to complete a few tasks. But don't worry, it's all worth it!</p>
+            <button id="action-btn">Click Here</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+         $(document).ready(function() {
+            $('#action-btn').click(function() {
+                $(this).text('Processing...').prop('disabled', true);
+                setTimeout(function() {
+                    window.location.href = 'game.html'; // Redirect to game.html after 2 seconds
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

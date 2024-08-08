@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chotu Chapri</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ffffff; /* White background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        position: relative;
+        overflow: hidden; /* Prevent overflow from images */
+      }
+      .flower {
+        position: absolute;
+        width: 150px; /* Increased size */
+        height: auto;
+        opacity: 0.7; /* Slight transparency */
+      }
+      .login-container {
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      h1 {
+        color: #e63946;
+        margin-bottom: 20px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #e63946;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #e63946;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #d62839;
+      }
+      @keyframes shake {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-5px, 0);
+        }
+        50% {
+          transform: translate(5px, 0);
+        }
+        75% {
+          transform: translate(-5px, 0);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      .shake {
+        animation: shake 0.5s;
+      }
+      .error-message {
+        color: #d62839;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+    <script>
+      function validateLogin(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const loginContainer = document.querySelector(".login-container");
+        const errorMessage = document.querySelector(".error-message");
+
+        if (username === "aprajeeta" && password === "10082008") {
+          window.location.href = "flowers/index.html";
+        } else {
+          errorMessage.style.display = "block";
+          loginContainer.classList.add("shake");
+          setTimeout(() => {
+            errorMessage.style.display = "none";
+          }, 5000);
+          setTimeout(() => {
+            loginContainer.classList.remove("shake");
+          }, 500);
+        }
+      }
+
+      function placeFlowers() {
+        const flowerImages = [
+          "login/images/flower3.png",
+          "login/images/flower2.png",
+          "login/images/flower3.png",
+          "login/images/flower4.png",
+          "login/images/flower5.png",
+        ];
+
+        for (let i = 0; i < 35; i++) {
+          // Increased the number of flowers
+          const img = document.createElement("img");
+          img.src =
+            flowerImages[Math.floor(Math.random() * flowerImages.length)];
+          img.classList.add("flower");
+          img.style.top = Math.random() * 100 + "vh";
+          img.style.left = Math.random() * 100 + "vw";
+          document.body.appendChild(img);
+        }
+      }
+
+      window.onload = placeFlowers;
+    </script>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Welcome to LoveLand</h1>
+      <form onsubmit="validateLogin(event)">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+        <div class="error-message">Dimaag lagao watsa!!</div>
+      </form>
+    </div>
+  </body>
+</html>

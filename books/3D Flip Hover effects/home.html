@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+      @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+
+      body {
+        font-family: "Indie Flower", cursive !important;
+        background: #fde3a7; /* CAPE HONEY */
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .content {
+        text-align: center;
+        margin-top: 50px;
+        opacity: 0; /* Start with the content hidden */
+        transform: translateY(-50px); /* Move content up slightly */
+      }
+
+      .content.show {
+        opacity: 1; /* Fade in the content */
+        transform: translateY(0); /* Move content to original position */
+        transition: all 1s ease-in-out; /* Smooth transition */
+      }
+
+      .content h1,
+      .content h2 {
+        font-family: "Indie Flower", cursive;
+        color: #013243; /* SHERPA BLUE */
+      }
+
+      .content button {
+        background-color: #1bbc9b; /* Button color */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-family: "Indie Flower", cursive;
+        font-size: 16px;
+        border-radius: 5px;
+        margin: 10px;
+        opacity: 0; /* Start with buttons hidden */
+        transform: translateY(20px); /* Move buttons down slightly */
+      }
+
+      .content button.show {
+        opacity: 1; /* Fade in the buttons */
+        transform: translateY(0); /* Move buttons to original position */
+        transition: all 1s ease-in-out; /* Smooth transition */
+      }
+
+      .content button:hover {
+        background-color: #c0392b; /* Hover color */
+        transform: scale(1.1); /* Slightly enlarge the button on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Pehle book par karna tha buddhu</h1>
+      <button onclick="goBack()">Go Back</button>
+      <h2>Agar book pr click kar liya ho to</h2>
+      <button onclick="goToFlowrs()">Yaha par click karo</button>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+      function goToFlowrs() {
+        window.location.href = "../../yes_no/index.html";
+      }
+
+      // jQuery animations
+      $(document).ready(function () {
+        // Fade in content
+        $(".content").addClass("show");
+
+        // Fade in buttons with delay
+        setTimeout(function () {
+          $(".content button").addClass("show");
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
