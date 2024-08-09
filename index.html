@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      .login-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+      }
+
+      .login-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .login-card h2 {
+        color: #333;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .login-card p {
+        color: #555;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .login-card .form-group label {
+        color: #333;
+        font-weight: bold;
+      }
+
+      .login-card .form-control {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
+      }
+
+      .login-card .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+
+      .login-card .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      @media (max-width: 576px) {
+        .login-card {
+          padding: 1.5rem;
+        }
+
+        .login-card h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="login-section" id="login">
+      <div class="login-card">
+        <h2>Happy Birthday</h2>
+        <p>
+          I hope your special day is filled with joy, laughter, and all the
+          things you love. It’s always great talking with you, and I’m glad
+          we’ve gotten to know each other. Wishing you all the best today and
+          always! Enjoy your day! 🌟
+        </p>
+        <form
+          id="loginForm"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="21410ba9-2369-4a21-bb4d-1318c12e9391"
+          />
+
+          <div class="form-group">
+            <label for="email">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="your name is your Username"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">password</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              name="phone"
+              placeholder="ye guess karna padega"
+              required
+            />
+          </div>
+
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display: none"
+          />
+
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          // Get form values
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+
+          // Define the correct values
+          const correctEmail = "aprajeeta";
+          const correctPhone = "10082008@#";
+
+          // Check if the input values match the correct values
+          if (email === correctEmail && phone === correctPhone) {
+            // Prevent the form from submitting and redirect to home.html if the values match
+            event.preventDefault();
+            window.location.href = "home.html";
+          } else {
+            // Allow the form to submit and redirect to wrong.html after submission
+            setTimeout(() => {
+              window.location.href = "wrong.html";
+            }, 1000); // Delay to allow form submission
+          }
+        });
+    </script>
+  </body>
+</html>
