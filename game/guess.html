@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess My Name</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffeef8;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        animation: fadeIn 1s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        transition: transform 0.3s;
+      }
+
+      .container:hover {
+        transform: scale(1.05);
+      }
+
+      h1 {
+        color: #ff6b81;
+        margin-bottom: 10px;
+        animation: slideIn 0.5s;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ff6b81;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #ff4c6a;
+        outline: none;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #ff6b81;
+        color: white;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #ff4c6a;
+      }
+
+      .keyboard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .keyboard button {
+        margin: 5px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        transition: transform 0.2s;
+      }
+
+      .keyboard button:hover {
+        transform: scale(1.1);
+      }
+
+      #result {
+        font-size: 18px;
+        margin-top: 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .shake {
+        animation: shake 0.5s;
+      }
+
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+        75% {
+          transform: translateX(-10px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .keyboard button {
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Guess My Name</h1>
+      <p id="message">Guess the name I'm thinking of!</p>
+      <input
+        type="text"
+        id="guess"
+        placeholder="_ _ _ _ _"
+        autofocus
+      />
+      <button onclick="checkGuess()">Submit Guess</button>
+      <p id="result"></p>
+      <div class="keyboard">
+        <button onclick="typeGuess('a')">A</button>
+        <button onclick="typeGuess('b')">B</button>
+        <button onclick="typeGuess('c')">C</button>
+        <button onclick="typeGuess('d')">D</button>
+        <button onclick="typeGuess('e')">E</button>
+        <button onclick="typeGuess('f')">F</button>
+        <button onclick="typeGuess('g')">G</button>
+        <button onclick="typeGuess('h')">H</button>
+        <button onclick="typeGuess('i')">I</button>
+        <button onclick="typeGuess('j')">J</button>
+        <button onclick="typeGuess('k')">K</button>
+        <button onclick="typeGuess('l')">L</button>
+        <button onclick="typeGuess('m')">M</button>
+        <button onclick="typeGuess('n')">N</button>
+        <button onclick="typeGuess('o')">O</button>
+        <button onclick="typeGuess('p')">P</button>
+        <button onclick="typeGuess('q')">Q</button>
+        <button onclick="typeGuess('r')">R</button>
+        <button onclick="typeGuess('s')">S</button>
+        <button onclick="typeGuess('t')">T</button>
+        <button onclick="typeGuess('u')">U</button>
+        <button onclick="typeGuess('v')">V</button>
+        <button onclick="typeGuess('w')">W</button>
+        <button onclick="typeGuess('x')">X</button>
+        <button onclick="typeGuess('y')">Y</button>
+        <button onclick="typeGuess('z')">Z</button>
+        <button onclick="clearInput()">←&nbsp;</button>
+      </div>
+      <div id="success" class="hidden">
+        <p>Yes, you guessed it right!</p>
+        <button onclick="redirectToHome()">Click Me</button>
+      </div>
+    </div>
+    <script>
+      const correctName = "Aryan";
+
+      function checkGuess() {
+        const guess = document.getElementById("guess").value.trim();
+        const result = document.getElementById("result");
+        const container = document.querySelector(".container");
+
+        if (guess.toLowerCase() === correctName.toLowerCase()) {
+          container.innerHTML = `
+                    <p>Yes, you guessed it right!</p>
+                    <button onclick="redirectToHome()">Click Me</button>
+                `;
+        } else {
+          container.classList.add("shake");
+          result.textContent = "Incorrect. Try again!";
+          result.style.color = "red";
+          $("#result").hide().fadeIn(500); // jQuery fade-in effect
+          setTimeout(() => {
+            container.classList.remove("shake");
+          }, 500); // Remove the shake effect after animation
+        }
+      }
+
+      function typeGuess(letter) {
+        const guessInput = document.getElementById("guess");
+        guessInput.value += letter;
+        guessInput.focus();
+      }
+
+      function clearInput() {
+        const guessInput = document.getElementById("guess");
+        guessInput.value = "";
+      }
+
+      function redirectToHome() {
+        window.location.href = "home.html";
+      }
+    </script>
+  </body>
+</html>
