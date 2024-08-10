@@ -82,55 +82,11 @@
         display: none;
       }
     </style>
-    <script>
-      function validateLogin(event) {
-        event.preventDefault();
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const loginContainer = document.querySelector(".login-container");
-        const errorMessage = document.querySelector(".error-message");
-
-        if (username === "aprajeeta" && password === "10082008") {
-          window.location.href = "flowers/index.html";
-        } else {
-          errorMessage.style.display = "block";
-          loginContainer.classList.add("shake");
-          setTimeout(() => {
-            errorMessage.style.display = "none";
-          }, 5000);
-          setTimeout(() => {
-            loginContainer.classList.remove("shake");
-          }, 500);
-        }
-      }
-
-      function placeFlowers() {
-        const flowerImages = [
-          "login/images/flower3.png",
-          "login/images/flower2.png",
-          "login/images/flower3.png",
-          "login/images/flower4.png",
-          "login/images/flower5.png",
-        ];
-
-        for (let i = 0; i < 35; i++) {
-          // Increased the number of flowers
-          const img = document.createElement("img");
-          img.src =
-            flowerImages[Math.floor(Math.random() * flowerImages.length)];
-          img.classList.add("flower");
-          img.style.top = Math.random() * 100 + "vh";
-          img.style.left = Math.random() * 100 + "vw";
-          document.body.appendChild(img);
-        }
-      }
-
-      window.onload = placeFlowers;
-    </script>
+    <script src="script.js"></script>
   </head>
   <body>
     <div class="login-container">
-      <h1>double authentication😂<br>same hai username aur password</h1>
+      <h1>Welcome to LoveLand</h1>
       <form onsubmit="validateLogin(event)">
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
